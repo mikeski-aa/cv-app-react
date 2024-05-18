@@ -1,11 +1,7 @@
 // function for creating buttons to be used throughout the app
-function AddNewButton({ className, text, action, buttonDisplay }) {
+function AddNewButton({ className, text, action }) {
   return (
-    <button
-      className={className}
-      onClick={action}
-      style={{ display: buttonDisplay }}
-    >
+    <button className={className} onClick={action}>
       {text}
     </button>
   );
