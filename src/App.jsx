@@ -1,6 +1,7 @@
 import "./App.css";
 import { InputAndButtons } from "./components/InputAndButtons";
 import { ContactInfo } from "./components/ContactInfo";
+import { WorkExpContainer } from "./components/WorkExpContainer";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         placeholderText="Enter your full name"
       />
       <ContactInfo/>
+      <WorkExpContainer/>
     </>
   );
 }
