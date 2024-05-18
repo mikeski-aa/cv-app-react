@@ -1,18 +1,36 @@
 import { AddNewButton } from "./AddNewButton";
 import { FormInput } from "./FormInput";
 import { useState } from "react";
+import "./FullNameEnter.css"
 
 function FullName() {
   const [disabledInput, setDisabledInput] = useState(true);
-  const [editVisibility, setEditVisibility] = useState("span");
-  const [editSCVisibility, setSCVisibility] = useState("none");
+  const [visibleToggle, setVisibleToggle] = useState(false);
+  const [inputContent, setInputContent] = useState("");
 
+ // on clicking edit, display show and cancel buttons, hide edit button 
   function handleEditClick() {
-    console.log("called");
     setDisabledInput(false);
-    setEditVisibility("none");
-    setSCVisibility("");
+    setVisibleToggle(true);
+    
   }
+
+ // on clicking save display edit, hide cancel and save
+  function handleSaveClick() {
+    setDisabledInput(true);
+    setVisibleToggle(false);
+  }
+
+ // on clicking cancel display edit, hide cancel and save
+  function handleCancelClick() {
+    setDisabledInput(true);
+    setVisibleToggle(false);
+  }
+
+  function handleInputChange(event){
+    console.log(event.target.value);
+  }
+
 
   return (
     <div className="fullName">
@@ -21,22 +39,22 @@ function FullName() {
         type="text"
         placeholder="Enter full name here"
         isDisabled={disabledInput}
+        action={handleInputChange}
       />
       <AddNewButton
-        className="editNameInput"
+        className={!visibleToggle ? "editInput show" : "editInput hide"}
         text="Edit"
         action={handleEditClick}
-        buttonDisplay={editVisibility}
       />
       <AddNewButton
-        className="saveNameInput"
+        className={visibleToggle ? 'saveNameInput show' : 'saveNameInput hide'}
         text="Save"
-        buttonDisplay={editSCVisibility}
+        action={handleSaveClick}
       />
       <AddNewButton
-        className="cancelNameInput"
-        text="Cancel"
-        buttonDisplay={editSCVisibility}
+        className={visibleToggle ? 'cancelNameInput show' : 'cancelNameInput hide'}
+        text="Cancel" 
+        action={handleCancelClick}
       />
     </div>
   );

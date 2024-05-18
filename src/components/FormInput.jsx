@@ -1,9 +1,10 @@
-function FormInput({className, type, placeholder, isDisabled}) {
+function FormInput({className, type, placeholder, isDisabled, action}) {
     return <input 
     type={type} 
     className={className} 
     placeholder={placeholder} 
-    disabled={isDisabled}>   
+    disabled={isDisabled}
+    onChange={e => {action(e)}}>   
     </input>
 }
 
