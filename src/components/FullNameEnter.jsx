@@ -6,6 +6,7 @@ import "./FullNameEnter.css"
 function FullName() {
   const [disabledInput, setDisabledInput] = useState(true);
   const [visibleToggle, setVisibleToggle] = useState(false);
+  const [tempInputContent, setTempInputContent] = useState("");
   const [inputContent, setInputContent] = useState("");
 
  // on clicking edit, display show and cancel buttons, hide edit button 
@@ -15,20 +16,28 @@ function FullName() {
     
   }
 
- // on clicking save display edit, hide cancel and save
+ // on clicking save display edit, hide cancel and save, save input state
   function handleSaveClick() {
     setDisabledInput(true);
     setVisibleToggle(false);
+    setInputContent(tempInputContent);
+    console.log(`saved value ${inputContent}`)
   }
 
  // on clicking cancel display edit, hide cancel and save
   function handleCancelClick() {
     setDisabledInput(true);
     setVisibleToggle(false);
+    setTempInputContent("");
+
+    
+    
   }
 
-  function handleInputChange(event){
-    console.log(event.target.value);
+  function handleInputChange(e){
+    setTempInputContent(e.target.value);
+    console.log(tempInputContent);
+    console.log(inputContent);
   }
 
 
@@ -40,6 +49,7 @@ function FullName() {
         placeholder="Enter full name here"
         isDisabled={disabledInput}
         action={handleInputChange}
+        fieldValue={tempInputContent}
       />
       <AddNewButton
         className={!visibleToggle ? "editInput show" : "editInput hide"}
