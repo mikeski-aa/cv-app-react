@@ -3,6 +3,8 @@ import { FormInput } from "./FormInput";
 import { useState } from "react";
 import "./InputAndButtons.css"
 
+// !!! REMEMBER !!! FormInput handles actions differently. Code will need to be adjusted
+
 function InputAndButtons({inputDivClass, inputClass, inputType, placeholderText}) {
   const [disabledInput, setDisabledInput] = useState(true);
   const [visibleToggle, setVisibleToggle] = useState(false);

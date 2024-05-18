@@ -5,6 +5,14 @@ import { useState } from "react";
 
 function WorkExpContainer() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [jobInfo, setJobInfo] = useState({
+    companyInput: "",
+    dateFrom: "",
+    dateUntil: "",
+    jobTitle: "",
+    jobOverview: ""
+
+  });
 
   function handleOpenClick() {
     setModalVisible(true);
@@ -12,6 +20,15 @@ function WorkExpContainer() {
 
   function handleCloseClick() {
     setModalVisible(false);
+    console.log(jobInfo);
+  }
+
+// need to create if / case for to handle data coming from different input sources
+  function handleStateChange(input, source) {
+    const newData = {source: `${input}`}
+    setJobInfo({
+      ...jobInfo, 
+      ...newData})
   }
 
   return (
@@ -22,6 +39,7 @@ function WorkExpContainer() {
         isOpen={modalVisible}
         closeAction={handleCloseClick}
         saveAction={handleCloseClick}
+        stateUpdate={handleStateChange}
       />
     </div>
   );
