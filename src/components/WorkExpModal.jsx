@@ -41,8 +41,8 @@ function WorkExpModal({ isOpen, saveAction, closeAction, stateUpdate }) {
           isDisabled={false}
           action={stateUpdate}
         />
-        <AddNewButton className="closeModal" text="Close" action={saveAction} />
-        <AddNewButton className="saveModal" text="Save" action={closeAction} />
+        <AddNewButton className="closeModal" text="Close" action={closeAction} />
+        <AddNewButton className="saveModal" text="Save" action={saveAction} />
       </div>
     </div>
   );

@@ -1,26 +1,53 @@
 import { AddNewButton } from "./AddNewButton";
 import { WorkExperienceDetails } from "./WorkExpDetails";
 import { WorkExpModal } from "./WorkExpModal";
-import { useState } from "react";
+import { createElement, useState } from "react";
+
 
 function WorkExpContainer() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [jobInfo, setJobInfo] = useState({
+  const [jobInfo, setJobInfo] = useState([{
     companyInput: "",
     dateFrom: "",
     dateUntil: "",
     jobTitle: "",
     jobOverview: ""
 
-  });
+  }]);
+
+// resets state - used when closing modal by saving or cancelling addition  
+  function resetState() {
+    setJobInfo({
+    companyInput: "",
+    dateFrom: "",
+    dateUntil: "",
+    jobTitle: "",
+    jobOverview: ""
+    })
+  }
 
   function handleOpenClick() {
     setModalVisible(true);
+    console.log(jobInfo);
   }
 
   function handleCloseClick() {
     setModalVisible(false);
+    resetState();
     console.log(jobInfo);
+  }
+
+// on clicking save, a new div should be created within workExp div called WorkExperienceDetails  
+  function handleSaveClick() {
+    setModalVisible(false);
+    setJobInfo({...jobInfo,
+    companyInput: "",
+    dateFrom: "5555",
+    dateUntil: "",
+    jobTitle: "",
+    jobOverview: "" 
+    })
+    
   }
 
 // need to create if / case for to handle data coming from different input sources
@@ -45,7 +72,7 @@ function handleStateChange(input, source) {
       <WorkExpModal
         isOpen={modalVisible}
         closeAction={handleCloseClick}
-        saveAction={handleCloseClick}
+        saveAction={handleSaveClick}
         stateUpdate={handleStateChange}
       />
     </div>
