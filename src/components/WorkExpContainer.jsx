@@ -7,8 +7,8 @@ import { v4 as uuidv4} from 'uuid'
 
 function WorkExpContainer() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [jobInfo, setJobInfo] = useState([{
-    id: uuidv4(),
+  const [tempJobInfo, setTempJobInfo] = useState([{
+    id: "",
     companyInput: "",
     dateFrom: "",
     dateUntil: "",
@@ -37,8 +37,9 @@ function WorkExpContainer() {
   }
 
 // resets state - used when closing modal by saving or cancelling addition  
-  function resetState() {
-    setJobInfo({
+  function resetTempState() {
+    setTempJobInfo({
+    id: "", 
     companyInput: "",
     dateFrom: "",
     dateUntil: "",
@@ -48,21 +49,22 @@ function WorkExpContainer() {
   }
 
   function handleOpenClick() {
+    setTempJobInfo({id: uuidv4()})
     setModalVisible(true);
-    console.log(jobInfo);
+    console.log(tempJobInfo);
     console.log(jobList)
   }
 
   function handleCloseClick() {
     setModalVisible(false);
-    resetState();
-    console.log(jobInfo);
+    resetTempState();
+    console.log(tempJobInfo);
   }
 
 // on clicking save, a new div should be created within workExp div called WorkExperienceDetails  
   function handleSaveClick() {
     setModalVisible(false);
-    setJobList([...jobList, jobInfo]);
+    setJobList([...jobList, tempJobInfo]);
     console.log(jobList)
     
   }
@@ -70,15 +72,15 @@ function WorkExpContainer() {
 // need to create if / case for to handle data coming from different input sources
 function handleStateChange(input, source) {
   if (source === "companyInput") {
-    setJobInfo({...jobInfo, companyInput: input})
+    setTempJobInfo({...tempJobInfo, companyInput: input})
   } else if (source === "dateFrom") {
-    setJobInfo({...jobInfo, dateFrom: input})
+    setTempJobInfo({...tempJobInfo, dateFrom: input})
   } else if (source === "dateUntil") {
-    setJobInfo({...jobInfo, dateUntil: input})
+    setTempJobInfo({...tempJobInfo, dateUntil: input})
   } else if (source === "jobTitle") {
-    setJobInfo({...jobInfo, jobTitle: input})
+    setTempJobInfo({...tempJobInfo, jobTitle: input})
   } else if (source === "jobOverview") {
-    setJobInfo({...jobInfo, jobOverview: input})
+    setTempJobInfo({...tempJobInfo, jobOverview: input})
   } 
 }
 
