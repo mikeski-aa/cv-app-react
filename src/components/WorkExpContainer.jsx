@@ -1,12 +1,14 @@
 import { AddNewButton } from "./AddNewButton";
-import { WorkExperienceDetails } from "./WorkExpDetails";
+import { WorkExpTemplate } from "./WorkExpTemplate";
 import { WorkExpModal } from "./WorkExpModal";
-import { createElement, useState } from "react";
+import { useState } from "react";
+import { v4 as uuidv4} from 'uuid'
 
 
 function WorkExpContainer() {
   const [modalVisible, setModalVisible] = useState(false);
   const [jobInfo, setJobInfo] = useState([{
+    id: uuidv4(),
     companyInput: "",
     dateFrom: "",
     dateUntil: "",
@@ -14,6 +16,25 @@ function WorkExpContainer() {
     jobOverview: ""
 
   }]);
+  const [jobList, setJobList] = useState([])
+
+
+  function WorkExperienceDetails() {
+    return (
+      <div className="workExperienceDetails">
+        {jobList.map((state) => (
+          <WorkExpTemplate
+            key={state.id}
+            companyName={state.companyInput}
+            dateF={state.dateFrom}
+            dateT={state.dateUntil}
+            jobT={state.jobTitle}
+            jobDesc={state.jobOverview}
+          />
+        ))}
+      </div>
+    );
+  }
 
 // resets state - used when closing modal by saving or cancelling addition  
   function resetState() {
@@ -29,6 +50,7 @@ function WorkExpContainer() {
   function handleOpenClick() {
     setModalVisible(true);
     console.log(jobInfo);
+    console.log(jobList)
   }
 
   function handleCloseClick() {
@@ -40,13 +62,8 @@ function WorkExpContainer() {
 // on clicking save, a new div should be created within workExp div called WorkExperienceDetails  
   function handleSaveClick() {
     setModalVisible(false);
-    setJobInfo({...jobInfo,
-    companyInput: "",
-    dateFrom: "5555",
-    dateUntil: "",
-    jobTitle: "",
-    jobOverview: "" 
-    })
+    setJobList([...jobList, jobInfo]);
+    console.log(jobList)
     
   }
 
