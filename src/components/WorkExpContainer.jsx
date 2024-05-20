@@ -67,6 +67,7 @@ function WorkExpContainer() {
   }
 
   // used for rendering the main work exp card
+  // this can probably get moved out to its own file right?
   function WorkExperienceDetails() {
     return (
       <div className="workExperienceDetails">
@@ -109,10 +110,13 @@ function WorkExpContainer() {
   }
 
   // this function should save and update existing card
+  // errors with rendering look into it
   function handleCardEditSave() {
     setEditModalVisible(false);
-    console.log(tempJobInfo.id);
-    console.log(jobList.filter((job => job.id === tempJobInfo.id)));
+    let tempStateHolder = jobList.filter((job => job.id === tempJobInfo.id))[0];
+    tempStateHolder = {...tempJobInfo}
+    setJobList({...jobList, tempStateHolder});
+    
     
     
   }
@@ -142,7 +146,7 @@ function WorkExpContainer() {
         jobObjectDesc={tempJobInfo.jobOverview}
         closeEditModal={handleCardEditClose}
         saveEditModal={handleCardEditSave}
-        stateUpdate={() => handleCardEditSave(tempJobInfo.id)}
+        stateUpdate={handleStateChange}
       />
     </div>
   );
