@@ -1,4 +1,4 @@
-function FormInput({ className, type, placeholder, isDisabled, action }) {
+function FormInput({ className, type, placeholder, isDisabled, action}) {
   // seperating event handler here gives more
   // flexibility - i.e can add parameters to functions being passed down
   const handleInputChange = (e) => {
@@ -13,7 +13,7 @@ function FormInput({ className, type, placeholder, isDisabled, action }) {
         className={className}
         placeholder={placeholder}
         disabled={isDisabled}
-        onChange={handleInputChange}
+        onChange={handleInputChange} 
       />
 
       <span className="error" aria-live="polite"></span>

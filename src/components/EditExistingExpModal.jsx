@@ -2,13 +2,13 @@ import "./Modals.css";
 import { AddNewButton } from "./AddNewButton";
 import { FormInput } from "./FormInput";
 
-function WorkExpModal({ isOpen, saveAction, closeAction, stateUpdate }) {
+function EditExistingExpModal({ isOpen, editModalSave, editModalClose, stateUpdate, inputObject }) {
   if (!isOpen) return null;
 
   return (
     <div className="modal">
-      <div className="workExpModal">
-        <FormInput
+      <div className="editWorkExpModal">
+        {/* <FormInput
           className="companyInput"
           type="text"
           placeholder="Enter company name"
@@ -40,16 +40,16 @@ function WorkExpModal({ isOpen, saveAction, closeAction, stateUpdate }) {
           placeholder="Describe your role"
           isDisabled={false}
           action={stateUpdate}
-        />
+        /> */}
         <AddNewButton
           className="closeModal"
           text="Close"
-          action={closeAction}
+          action={editModalClose}
         />
-        <AddNewButton className="saveModal" text="Save" action={saveAction} />
+        <AddNewButton className="saveModal" text="Save" action={editModalSave} />
       </div>
     </div>
   );
 }
 
-export { WorkExpModal };
+export { EditExistingExpModal };
