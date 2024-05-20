@@ -4,6 +4,8 @@ import { WorkExpModal } from "./WorkExpModal";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { EditExistingExpModal } from "./EditExistingExpModal";
+import "./Modals.css";
+import { FormInput } from "./FormInput";
 
 function WorkExpContainer() {
   const [addModalVisible, setAddModalVisible] = useState(false);
@@ -19,6 +21,7 @@ function WorkExpContainer() {
     },
   ]);
   const [jobList, setJobList] = useState([]);
+  let testValue = "testing 123";
 
   // resets state - used when closing modal by saving or cancelling addition
   function resetTempState() {
@@ -87,22 +90,63 @@ function WorkExpContainer() {
 
   // card delete click handler
   function handleCardDelete(id) {
-    const tempState = {...jobList};
-    const filteredState = Object.values(tempState).filter((job) => job.id != id);
+    const tempState = { ...jobList };
+    const filteredState = Object.values(tempState).filter(
+      (job) => job.id != id
+    );
     setJobList(filteredState);
   }
 
   // card edit click handler
   function handleCardEditOpen(details) {
-    setEditModalVisible(true)
-    
-    
-    
+    setEditModalVisible(true);
+    setTempJobInfo(details);
   }
 
   // card edit close handler
   function handleCardEditClose() {
-    setEditModalVisible(false)
+    setEditModalVisible(false);
+    resetTempState();
+  }
+
+  // edit modal for specific job card
+  function EditTest() {
+    if (!editModalVisible) return null;
+
+    let tempObjectID = Object.values(tempJobInfo.id);
+    let tempObjectCompany = tempJobInfo.companyInput;
+    let tempObjectDateF = tempJobInfo.dateFrom;
+    // function FormInput({ className, type, placeholder, isDisabled, action, inputDefault}) {
+    return (
+      <div className="modal">
+        <div className="editWorkExpModal">
+          <FormInput
+            className="companyName"
+            type="text"
+            isDisabled={false}
+            inputDefault={tempObjectCompany}
+            labelText="Company Name"
+          />
+          <FormInput
+            className="dateFrom"
+            type="date"
+            isDisabled={false}
+            inputDefault={tempObjectDateF}
+            labelText="Start date"
+          />
+          <AddNewButton
+            className="closeModal"
+            text="Close"
+            action={handleCardEditClose}
+          />
+          <AddNewButton
+            className="saveModal"
+            text="Save"
+            action={handleCardEditClose}
+          />
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -120,12 +164,13 @@ function WorkExpContainer() {
         stateUpdate={handleStateChange}
         initialVal="test"
       />
-      <EditExistingExpModal
+      <EditTest someVal={testValue} />
+      {/* <EditExistingExpModal
         isOpen={editModalVisible}
         editModalClose={handleCardEditClose}
         editModalSave={null}
         
-        />
+        /> */}
     </div>
   );
 }

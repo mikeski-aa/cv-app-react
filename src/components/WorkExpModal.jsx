@@ -14,18 +14,21 @@ function WorkExpModal({ isOpen, saveAction, closeAction, stateUpdate }) {
           placeholder="Enter company name"
           isDisabled={false}
           action={stateUpdate}
+          labelText="Enter company name"
         />
         <FormInput
           className="dateFrom"
           type="date"
           isDisabled={false}
           action={stateUpdate}
+          labelText="Starting date"
         />
         <FormInput
           className="dateUntil"
           type="date"
           isDisabled={false}
           action={stateUpdate}
+          labelText="Date of finish"
         />
         <FormInput
           className="jobTitle"
@@ -33,6 +36,7 @@ function WorkExpModal({ isOpen, saveAction, closeAction, stateUpdate }) {
           placeholder="Enter job title"
           isDisabled={false}
           action={stateUpdate}
+          labelText="Job title"
         />
         <FormInput
           className="jobOverview"
@@ -40,13 +44,16 @@ function WorkExpModal({ isOpen, saveAction, closeAction, stateUpdate }) {
           placeholder="Describe your role"
           isDisabled={false}
           action={stateUpdate}
+          labelText="Job overview"
         />
-        <AddNewButton
-          className="closeModal"
-          text="Close"
-          action={closeAction}
-        />
-        <AddNewButton className="saveModal" text="Save" action={saveAction} />
+        <div className="formButtons">
+          <AddNewButton
+            className="closeModal"
+            text="Close"
+            action={closeAction}
+          />
+          <AddNewButton className="saveModal" text="Save" action={saveAction} />
+        </div>
       </div>
     </div>
   );
