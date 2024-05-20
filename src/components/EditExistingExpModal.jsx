@@ -2,51 +2,39 @@ import "./Modals.css";
 import { AddNewButton } from "./AddNewButton";
 import { FormInput } from "./FormInput";
 
-function EditExistingExpModal({ isOpen, editModalSave, editModalClose, stateUpdate, inputObject }) {
-  if (!isOpen) return null;
+// edit modal for specific job card
+function EditExistingExpModal(modalState, companyObject, dateObjectF, closeEditModal) {
+  if (modalState === true) return null;
 
   return (
     <div className="modal">
       <div className="editWorkExpModal">
-        {/* <FormInput
-          className="companyInput"
+        <FormInput
+          className="companyName"
           type="text"
-          placeholder="Enter company name"
           isDisabled={false}
-          action={stateUpdate}
+          inputDefault={companyObject}
+          labelText="Company Name"
         />
         <FormInput
           className="dateFrom"
           type="date"
           isDisabled={false}
-          action={stateUpdate}
+          inputDefault={dateObjectF}
+          labelText="Start date"
         />
-        <FormInput
-          className="dateUntil"
-          type="date"
-          isDisabled={false}
-          action={stateUpdate}
-        />
-        <FormInput
-          className="jobTitle"
-          type="text"
-          placeholder="Enter job title"
-          isDisabled={false}
-          action={stateUpdate}
-        />
-        <FormInput
-          className="jobOverview"
-          type="textarea"
-          placeholder="Describe your role"
-          isDisabled={false}
-          action={stateUpdate}
-        /> */}
+
+        
         <AddNewButton
           className="closeModal"
           text="Close"
-          action={editModalClose}
+          action={null}
         />
-        <AddNewButton className="saveModal" text="Save" action={editModalSave} />
+        <AddNewButton
+          className="saveModal"
+          text="Save"
+          action={null}
+        />
       </div>
     </div>
   );
