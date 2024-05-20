@@ -18,3 +18,8 @@
     border-radius: 10px;
     box-shadow: 2px solid black;
 }
+
+.editWorkExpModal {
+    height: fit-content;
+    width: fit-content;
+}

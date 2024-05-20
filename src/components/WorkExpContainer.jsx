@@ -3,9 +3,8 @@ import { WorkExpTemplate } from "./WorkExpTemplate";
 import { WorkExpModal } from "./WorkExpModal";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-// import { EditExistingExpModal } from "./EditExistingExpModal";
-import "./Modals.css";
-import { FormInput } from "./FormInput";
+import { EditExistingExpModal } from "./EditExistingExpModal";
+
 
 function WorkExpContainer() {
   const [addModalVisible, setAddModalVisible] = useState(false);
@@ -98,9 +97,9 @@ function WorkExpContainer() {
 
   // card edit click handler
   function handleCardEditOpen(details) {
-    console.log("why ");
     setEditModalVisible(true);
     setTempJobInfo(details);
+    console.log(tempJobInfo.companyInput)
   }
 
   // card edit close handler
@@ -114,61 +113,61 @@ function WorkExpContainer() {
   // however, when placed in a different file, it causes this modal to display on refresh
   // and you cannot close it with buttons
   // I don't know why...
-  function EditTest() {
-    if (!editModalVisible) return null;
+  // function EditTest() {
+  //   if (!editModalVisible) return null;
 
-    return (
-      <div className="modal">
-        <div className="editWorkExpModal">
-          <FormInput
-            className="companyName"
-            type="text"
-            isDisabled={false}
-            inputDefault={tempJobInfo.companyInput}
-            labelText="Company Name"
-          />
-          <FormInput
-            className="dateFrom"
-            type="date"
-            isDisabled={false}
-            inputDefault={tempJobInfo.dateFrom}
-            labelText="Starting date"
-          />
-          <FormInput
-            className="dateUntil"
-            type="date"
-            isDisabled={false}
-            inputDefault={tempJobInfo.dateUntil}
-            labelText="Finish date"
-          />
-          <FormInput
-            className="jobTitle"
-            type="text"
-            isDisabled={false}
-            inputDefault={tempJobInfo.jobTitle}
-            labelText="Job Title"
-          />
-          <FormInput
-            className="jobDesc"
-            type="textarea"
-            isDisabled={false}
-            inputDefault={tempJobInfo.jobOverview}
-            labelText="Job responsibilities"
-          />
-          <AddNewButton
-            className="closeModal"
-            text="Close"
-            action={handleCardEditClose}
-          />
-          <AddNewButton
-            className="saveModal"
-            text="Save"
-            action={handleCardEditClose}
-          />
-        </div>
-      </div>
-    );
-  }
+  //   return (
+  //     <div className="modal">
+  //       <div className="editWorkExpModal">
+  //         <FormInput
+  //           className="companyName"
+  //           type="text"
+  //           isDisabled={false}git
+  //           inputDefault={tempJobInfo.companyInput}
+  //           labelText="Company Name"
+  //         />
+  //         <FormInput
+  //           className="dateFrom"
+  //           type="date"
+  //           isDisabled={false}
+  //           inputDefault={tempJobInfo.dateFrom}
+  //           labelText="Starting date"
+  //         />
+  //         <FormInput
+  //           className="dateUntil"
+  //           type="date"
+  //           isDisabled={false}
+  //           inputDefault={tempJobInfo.dateUntil}
+  //           labelText="Finish date"
+  //         />
+  //         <FormInput
+  //           className="jobTitle"
+  //           type="text"
+  //           isDisabled={false}
+  //           inputDefault={tempJobInfo.jobTitle}
+  //           labelText="Job Title"
+  //         />
+  //         <FormInput
+  //           className="jobDesc"
+  //           type="textarea"
+  //           isDisabled={false}
+  //           inputDefault={tempJobInfo.jobOverview}
+  //           labelText="Job responsibilities"
+  //         />
+  //         <AddNewButton
+  //           className="closeModal"
+  //           text="Close"
+  //           action={handleCardEditClose}
+  //         />
+  //         <AddNewButton
+  //           className="saveModal"
+  //           text="Save"
+  //           action={handleCardEditClose}
+  //         />
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="workExp">
@@ -186,14 +185,17 @@ function WorkExpContainer() {
         initialVal="test"
       />
 
-      <EditTest />
 
-      {/* <EditExistingExpModal
-        isOpen={editModalVisible}
-        tempObjectCompany={tempJobInfo.companyInput}
-        tempObjectDateF={tempJobInfo.dateFrom}
+      <EditExistingExpModal
+        modalState={editModalVisible}
+        companyObjectName={tempJobInfo.companyInput}
+        dateObjectFrom={tempJobInfo.dateFrom}
+        dateObjectUntill={tempJobInfo.dateUntil}
+        jobObjectTitle={tempJobInfo.jobTitle}
+        jobObjectDesc={tempJobInfo.jobOverview}
         closeEditModal={handleCardEditClose}
-      /> */}
+        close={handleCardEditClose}
+      />
     </div>
   );
 }

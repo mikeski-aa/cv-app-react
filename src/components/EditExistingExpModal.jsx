@@ -3,8 +3,16 @@ import { AddNewButton } from "./AddNewButton";
 import { FormInput } from "./FormInput";
 
 // edit modal for specific job card
-function EditExistingExpModal(modalState, companyObject, dateObjectF, closeEditModal) {
-  if (modalState === true) return null;
+function EditExistingExpModal({
+  modalState,
+  companyObjectName,
+  dateObjectFrom,
+  dateObjectUntill,
+  jobObjectTitle,
+  jobObjectDesc,
+  close,
+}) {
+  if (!modalState) return null;
 
   return (
     <div className="modal">
@@ -13,28 +21,40 @@ function EditExistingExpModal(modalState, companyObject, dateObjectF, closeEditM
           className="companyName"
           type="text"
           isDisabled={false}
-          inputDefault={companyObject}
+          git
+          inputDefault={companyObjectName}
           labelText="Company Name"
         />
         <FormInput
           className="dateFrom"
           type="date"
           isDisabled={false}
-          inputDefault={dateObjectF}
-          labelText="Start date"
+          inputDefault={dateObjectFrom}
+          labelText="Starting date"
         />
-
-        
-        <AddNewButton
-          className="closeModal"
-          text="Close"
-          action={null}
+        <FormInput
+          className="dateUntil"
+          type="date"
+          isDisabled={false}
+          inputDefault={dateObjectUntill}
+          labelText="Finish date"
         />
-        <AddNewButton
-          className="saveModal"
-          text="Save"
-          action={null}
+        <FormInput
+          className="jobTitle"
+          type="text"
+          isDisabled={false}
+          inputDefault={jobObjectTitle}
+          labelText="Job Title"
         />
+        <FormInput
+          className="jobDesc"
+          type="textarea"
+          isDisabled={false}
+          inputDefault={jobObjectDesc}
+          labelText="Job responsibilities"
+        />
+        <AddNewButton className="closeModal" text="Close" action={close} />
+        <AddNewButton className="saveModal" text="Save" action={close} />
       </div>
     </div>
   );
