@@ -10,7 +10,9 @@ function EditExistingExpModal({
   dateObjectUntill,
   jobObjectTitle,
   jobObjectDesc,
-  close,
+  closeEditModal,
+  saveEditModal,
+  stateUpdate
 }) {
   if (!modalState) return null;
 
@@ -18,11 +20,12 @@ function EditExistingExpModal({
     <div className="modal">
       <div className="editWorkExpModal">
         <FormInput
-          className="companyName"
+          className="companyInput"
           type="text"
           isDisabled={false}
           git
           inputDefault={companyObjectName}
+          action={stateUpdate}
           labelText="Company Name"
         />
         <FormInput
@@ -30,6 +33,7 @@ function EditExistingExpModal({
           type="date"
           isDisabled={false}
           inputDefault={dateObjectFrom}
+          action={stateUpdate}
           labelText="Starting date"
         />
         <FormInput
@@ -37,6 +41,7 @@ function EditExistingExpModal({
           type="date"
           isDisabled={false}
           inputDefault={dateObjectUntill}
+          action={stateUpdate}
           labelText="Finish date"
         />
         <FormInput
@@ -44,17 +49,19 @@ function EditExistingExpModal({
           type="text"
           isDisabled={false}
           inputDefault={jobObjectTitle}
+          action={stateUpdate}
           labelText="Job Title"
         />
         <FormInput
-          className="jobDesc"
+          className="jobOverview"
           type="textarea"
           isDisabled={false}
           inputDefault={jobObjectDesc}
+          action={stateUpdate}
           labelText="Job responsibilities"
         />
-        <AddNewButton className="closeModal" text="Close" action={close} />
-        <AddNewButton className="saveModal" text="Save" action={close} />
+        <AddNewButton className="closeModal" text="Close" action={closeEditModal} />
+        <AddNewButton className="saveModal" text="Save" action={saveEditModal} />
       </div>
     </div>
   );

@@ -108,66 +108,14 @@ function WorkExpContainer() {
     resetTempState();
   }
 
-  // edit modal for specific job card
-  // this could should live in its own file (like the other modal file)
-  // however, when placed in a different file, it causes this modal to display on refresh
-  // and you cannot close it with buttons
-  // I don't know why...
-  // function EditTest() {
-  //   if (!editModalVisible) return null;
-
-  //   return (
-  //     <div className="modal">
-  //       <div className="editWorkExpModal">
-  //         <FormInput
-  //           className="companyName"
-  //           type="text"
-  //           isDisabled={false}git
-  //           inputDefault={tempJobInfo.companyInput}
-  //           labelText="Company Name"
-  //         />
-  //         <FormInput
-  //           className="dateFrom"
-  //           type="date"
-  //           isDisabled={false}
-  //           inputDefault={tempJobInfo.dateFrom}
-  //           labelText="Starting date"
-  //         />
-  //         <FormInput
-  //           className="dateUntil"
-  //           type="date"
-  //           isDisabled={false}
-  //           inputDefault={tempJobInfo.dateUntil}
-  //           labelText="Finish date"
-  //         />
-  //         <FormInput
-  //           className="jobTitle"
-  //           type="text"
-  //           isDisabled={false}
-  //           inputDefault={tempJobInfo.jobTitle}
-  //           labelText="Job Title"
-  //         />
-  //         <FormInput
-  //           className="jobDesc"
-  //           type="textarea"
-  //           isDisabled={false}
-  //           inputDefault={tempJobInfo.jobOverview}
-  //           labelText="Job responsibilities"
-  //         />
-  //         <AddNewButton
-  //           className="closeModal"
-  //           text="Close"
-  //           action={handleCardEditClose}
-  //         />
-  //         <AddNewButton
-  //           className="saveModal"
-  //           text="Save"
-  //           action={handleCardEditClose}
-  //         />
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  // this function should save and update existing card
+  function handleCardEditSave() {
+    setEditModalVisible(false);
+    console.log(tempJobInfo.id);
+    console.log(jobList.filter((job => job.id === tempJobInfo.id)));
+    
+    
+  }
 
   return (
     <div className="workExp">
@@ -182,7 +130,6 @@ function WorkExpContainer() {
         closeAction={handleCloseClick}
         saveAction={handleSaveClick}
         stateUpdate={handleStateChange}
-        initialVal="test"
       />
 
 
@@ -194,7 +141,8 @@ function WorkExpContainer() {
         jobObjectTitle={tempJobInfo.jobTitle}
         jobObjectDesc={tempJobInfo.jobOverview}
         closeEditModal={handleCardEditClose}
-        close={handleCardEditClose}
+        saveEditModal={handleCardEditSave}
+        stateUpdate={() => handleCardEditSave(tempJobInfo.id)}
       />
     </div>
   );

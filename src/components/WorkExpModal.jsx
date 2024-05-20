@@ -2,6 +2,8 @@ import "./Modals.css";
 import { AddNewButton } from "./AddNewButton";
 import { FormInput } from "./FormInput";
 
+// displays modal to add a new section to work experience on CV
+
 function WorkExpModal({ isOpen, saveAction, closeAction, stateUpdate }) {
   if (!isOpen) return null;
 
